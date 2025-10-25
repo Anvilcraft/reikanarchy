@@ -117,7 +117,6 @@ import Reika.DragonAPI.ModInteract.ItemHandlers.ForestryHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.GalacticCraftHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.GregOreHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.HarvestCraftHandler;
-import Reika.DragonAPI.ModInteract.ItemHandlers.HexBlockHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.HexBlockHandlerSimple;
 import Reika.DragonAPI.ModInteract.ItemHandlers.HungerOverhaulHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.IC2Handler;
@@ -956,15 +955,7 @@ public class DragonAPIInit extends DragonAPIMod {
         this.registerHandler(ModList.CHISEL, ChiselBlockHandler.class, "Handler");
         this.registerHandler(ModList.GREGTECH, GregOreHandler.class, "Ore Handler");
         this.registerHandler(ModList.NATURA, NaturaBlockHandler.class, "Block Handler");
-        if (!this.registerHandler(
-                ModList.HEXCRAFT,
-                HexBlockHandler.class,
-                "Block Handler",
-                new ClassVersionHandler("com.celestek.hexcraft.api.WorldGenColors")
-            ))
-            this.registerHandler(
-                ModList.HEXCRAFT, HexBlockHandlerSimple.class, "Block Handler"
-            );
+        this.registerHandler(ModList.HEXCRAFT, HexBlockHandlerSimple.class, "Block Handler");
 
         ReikaJavaLibrary.initClass(ModOreList.class, true);
         ReikaJavaLibrary.initClass(ModWoodList.class, true);

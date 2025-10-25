@@ -161,40 +161,7 @@ public class ModVersion implements Comparable<ModVersion> {
     }
 
     public static ModVersion readFromFile(DragonAPIMod mod) {
-        if (DragonAPICore.isReikasComputer()
-            && ReikaObfuscationHelper.isDeObfEnvironment())
-            return source;
-        Properties p = new Properties();
-        String path = ReikaStringParser.stripSpaces(
-            "version_"
-            + ReikaStringParser.stripSpaces(
-                mod.getTechnicalName().toLowerCase(Locale.ENGLISH)
-            )
-            + ".properties"
-        );
-        try {
-            InputStream stream
-                = ModVersion.class.getClassLoader().getResourceAsStream(path);
-            if (stream == null) {
-                throw new FileNotFoundException(
-                    "Version file for " + mod.getDisplayName() + " is missing!"
-                );
-            }
-            p.load(stream);
-            String mj = p.getProperty("Major");
-            String mn = p.getProperty("Minor");
-            if (mj == null || mn == null || mj.equals("null") || mn.equals("null")
-                || mj.isEmpty() || mn.isEmpty())
-                throw new InstallationException(
-                    mod,
-                    "The version file was either damaged, overwritten, or is missing!"
-                );
-            return getFromString(mj + mn);
-        } catch (IOException e) {
-            throw new InstallationException(
-                mod, "The version file was either damaged, overwritten, or is missing!", e
-            );
-        }
+        return source;
     }
 
     public String toSemanticVersion() {
