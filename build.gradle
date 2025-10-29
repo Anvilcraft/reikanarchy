@@ -60,6 +60,7 @@ dependencies {
     compileOnly "reika:RotaryCraft:V33a:deobf"
     compileOnly "reika:Satisforestry:V33a:deobf"
     compileOnly "reika:VoidMonster:V33a:deobf"
+    compileOnly "reika:CondensedOres:V33a"
 
     // Direct deps (reika, WTF)
     compileOnly "mods:MineFactoryReloaded:[1.7.10]2.8.0-104:dev"
