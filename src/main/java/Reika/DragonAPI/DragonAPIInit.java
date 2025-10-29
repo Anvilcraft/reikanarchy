@@ -202,9 +202,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
     modid = "DragonAPI",
-    version = "v@MAJOR_VERSION@@MINOR_VERSION@",
+    version = "{VERSION}",
     acceptedMinecraftVersions = "[1.7.10]",
-    certificateFingerprint = "@GET_FINGERPRINT@",
     dependencies = DragonAPICore.dependencies
 )
 public class DragonAPIInit extends DragonAPIMod {
@@ -228,18 +227,7 @@ public class DragonAPIInit extends DragonAPIMod {
         super();
     }
 
-    @EventHandler
-    public void invalidSignature(FMLFingerprintViolationEvent evt) {
-        if (!ReikaObfuscationHelper.isDeObfEnvironment()) {
-            if (!evt.fingerprints.contains(evt.expectedFingerprint
-                                               .toLowerCase(Locale.ENGLISH)
-                                               .replaceAll(":", ""))) {
-                throw new InvalidBuildException(
-                    this, evt.source, "Invalid mod jarsign fingerprint!"
-                );
-            }
-        }
-    }
+    public void invalidSignature(FMLFingerprintViolationEvent evt) {}
 
     @Override
     @EventHandler

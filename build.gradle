@@ -23,7 +23,7 @@ apply plugin: 'maven-publish'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "1.0"
+version = "v33b"
 group = "Reika.DragonAPI"
 archivesBaseName = "DragonAPI"
 
@@ -35,6 +35,9 @@ configurations {
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "run"
+
+    replaceIn "Reika/DragonAPI/DragonAPIInit.java"
+    replace "{VERSION}", project.version
 }
 
 repositories {
@@ -64,7 +67,7 @@ dependencies {
 
     // Direct deps (reika, WTF)
     compileOnly "mods:MineFactoryReloaded:[1.7.10]2.8.0-104:dev"
-    compileOnly "appeng:appliedenergistics2:rv3-beta-21:dev"
+    embedded "appeng:appliedenergistics2:rv3-beta-21:api"
     compileOnly "buildcraft:buildcraft:7.1.25:dev"
     compileOnly "chisel:Chisel:2.9.5.11:deobf"
     compileOnly "codechicken:CodeChickenCore:1.7.10-1.0.7.48:dev"
@@ -89,7 +92,7 @@ dependencies {
     compileOnly "mods:HEXCraft:1.7.10-0.13.2:deobf"
     compileOnly "mods:ImmersiveEngineering:0.7.7:deobf"
     compileOnly "mods:MatterOverdrive:1.7.10-0.4.2:deobf"
-    compileOnly "mods:MineChem:1.7.10:deobf"
+    embedded "mods:MineChem:1.7.10:api"
     compileOnly "mods:MineTweaker3:1.7.10-3.0.10B:dev"
     compileOnly "mods:OpenComputers:MC1.7.10-1.8.3+089dd28:deobf"
     compileOnly "mods:PneumaticCraft:1.7.10-1.12.7-152:deobf"
