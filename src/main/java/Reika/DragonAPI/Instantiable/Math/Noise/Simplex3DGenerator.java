@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Instantiable.Math.Noise;
 
 import net.minecraft.util.MathHelper;
@@ -141,8 +132,7 @@ public class Simplex3DGenerator extends SimplexNoiseGenerator {
                     dz_ext0 = dz_ext1 = dz0 - 1;
                 }
             } else { //(0,0,0) is not one of the closest two tetrahedral vertices.
-                byte c = (byte
-                ) (aPoint | bPoint
+                byte c = (byte) (aPoint | bPoint
                 ); //Our two extra vertices are determined by the closest two.
 
                 if ((c & 0x01) == 0) {
@@ -281,8 +271,7 @@ public class Simplex3DGenerator extends SimplexNoiseGenerator {
                     dz_ext0 = dz_ext1 = dz0 - 3 * SQUISH_CONSTANT_3D;
                 }
             } else { //(1,1,1) is not one of the closest two tetrahedral vertices.
-                byte c = (byte
-                ) (aPoint & bPoint
+                byte c = (byte) (aPoint & bPoint
                 ); //Our two extra vertices are determined by the closest two.
 
                 if ((c & 0x01) != 0) {

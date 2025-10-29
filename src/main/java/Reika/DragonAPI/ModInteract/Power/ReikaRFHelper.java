@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.ModInteract.Power;
 
 import java.lang.reflect.Field;
@@ -46,8 +37,7 @@ public class ReikaRFHelper {
 
     //Default value yields 1RF/t=520W, with config ranges from 1RF/t=260W to 1RF/t=1040W
     public static int getWattsPerRF() {
-        return (int
-        ) (20 * ReikaThermoHelper.ROCK_MELT_ENERGY / getRFPerStoneBlock()
+        return (int) (20 * ReikaThermoHelper.ROCK_MELT_ENERGY / getRFPerStoneBlock()
         ); //*20 for /t vs /s
     }
 

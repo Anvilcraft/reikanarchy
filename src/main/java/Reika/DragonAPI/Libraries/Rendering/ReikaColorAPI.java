@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.Rendering;
 
 import java.awt.Color;
@@ -55,7 +46,7 @@ public class ReikaColorAPI {
         int[] color = new int[4];
         color[0] = (hex >>> 16) & 0xFF;
         color[1] = (hex >>> 8) & 0xFF;
-        color[2] = (hex) &0xFF;
+        color[2] = (hex) & 0xFF;
         color[3] = (hex >>> 24) & 0xFF;
         return color;
     }
@@ -186,8 +177,9 @@ public class ReikaColorAPI {
     }
 
     public static int getHue(int rgb) {
-        return (int
-        ) (360 * Color.RGBtoHSB(getRed(rgb), getGreen(rgb), getBlue(rgb), null)[0]);
+        return (int) (360
+                      * Color.RGBtoHSB(getRed(rgb), getGreen(rgb), getBlue(rgb), null)[0]
+        );
     }
 
     public static int getShiftedDelta(int color, int base, int newbase) {

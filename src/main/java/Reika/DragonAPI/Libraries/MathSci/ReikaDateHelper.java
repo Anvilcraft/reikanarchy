@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.MathSci;
 
 import java.text.DateFormat;
@@ -89,9 +80,8 @@ public class ReikaDateHelper {
      * Clamps a date to between two month/day pairs; eg 0/14 and 3/8 results in a date
      * clamped between Jan 14 and Apr 8.
      */
-    public static int[] clampDate(
-        int month, int day, int month1, int day1, int month2, int day2
-    ) {
+    public static int[]
+    clampDate(int month, int day, int month1, int day1, int month2, int day2) {
         int monthc = MathHelper.clamp_int(month, month1, month2);
         int dayc = MathHelper.clamp_int(day, 0, 31);
         if (month == month1)

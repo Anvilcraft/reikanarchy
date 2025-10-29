@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.Java;
 
 import java.io.File;
@@ -963,7 +954,7 @@ public final class ReikaJavaLibrary extends DragonAPICore {
 
     public static byte[] splitInt(int val) {
         byte[] ret = new byte[4];
-        ret[0] = (byte) ((val) &255);
+        ret[0] = (byte) ((val) & 255);
         ret[1] = (byte) ((val >>> 8) & 255);
         ret[2] = (byte) ((val >>> 16) & 255);
         ret[3] = (byte) ((val >>> 24) & 255);

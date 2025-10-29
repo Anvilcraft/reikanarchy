@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.MathSci;
 
 import Reika.DragonAPI.DragonAPICore;
@@ -113,9 +104,8 @@ public final class ReikaPhysicsHelper extends DragonAPICore {
      * Calculates the required velocity (in xyz cartesian coordinates) required to travel
      * in projectile motion from point A to point B. Args: start x,y,z end x,y,z, double g
      */
-    public static double[] targetPosn(
-        double x, double y, double z, double x2, double y2, double z2, double ag
-    ) {
+    public static double[]
+    targetPosn(double x, double y, double z, double x2, double y2, double z2, double ag) {
         double[] v = new double[3];
         double[] target = { x2, y2, z2 };
         double velocity;

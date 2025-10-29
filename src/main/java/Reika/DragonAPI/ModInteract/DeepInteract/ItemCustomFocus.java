@@ -60,8 +60,8 @@ public abstract class ItemCustomFocus extends ItemFocusBasic {
 
     @Override
     @ModDependent(ModList.THAUMCRAFT)
-    public abstract
-        FocusUpgradeType[] getPossibleUpgradesByRank(ItemStack focusstack, int rank);
+    public abstract FocusUpgradeType[]
+    getPossibleUpgradesByRank(ItemStack focusstack, int rank);
 
     public boolean onLeftClick(
         World world,

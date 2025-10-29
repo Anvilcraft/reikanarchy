@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.IO;
 
 import java.awt.Color;
@@ -208,9 +199,8 @@ public final class ReikaImageLoader {
         return icons;
     }
 
-    private static IIcon[][] unstitchIcons(
-        IIconRegister ico, String name, int columns, int rows
-    ) {
+    private static IIcon[][]
+    unstitchIcons(IIconRegister ico, String name, int columns, int rows) {
         TextureMap textureMap = (TextureMap) ico;
         IIcon[][] icons = new IIcon[columns][rows];
         for (int i = 0; i < columns; i++) {

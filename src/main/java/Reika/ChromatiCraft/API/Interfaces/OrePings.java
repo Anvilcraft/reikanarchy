@@ -8,34 +8,33 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 public class OrePings {
+    public static interface OrePingDelegate {
+        public boolean match(Block b, int meta);
 
-	public static interface OrePingDelegate {
+        public int getColor();
 
-		public boolean match(Block b, int meta);
+        public boolean isVisible(EntityPlayer ep);
 
-		public int getColor();
+        public IIcon getIcon();
 
-		public boolean isVisible(EntityPlayer ep);
+        public ItemStack getPrimary();
+    }
 
-		public IIcon getIcon();
+    public static void addBlockForOrePing(Block b, OrePingDelegate delegate) {
+        addBlockForOrePing(b, -1, delegate);
+    }
 
-		public ItemStack getPrimary();
-
-	}
-
-	public static void addBlockForOrePing(Block b, OrePingDelegate delegate) {
-		addBlockForOrePing(b, -1, delegate);
-	}
-
-	public static void addBlockForOrePing(Block b, int meta, OrePingDelegate delegate) {
-		try {
-			Class c = Class.forName("Reika.ChromatiCraft.Auxiliary.Render.OreOverlayRenderer");
-			Method m = c.getMethod("addBlockDelegate", Block.class, int.class, OrePingDelegate.class);
-			m.invoke(null, b, meta, delegate);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+    public static void addBlockForOrePing(Block b, int meta, OrePingDelegate delegate) {
+        try {
+            Class c
+                = Class.forName("Reika.ChromatiCraft.Auxiliary.Render.OreOverlayRenderer"
+                );
+            Method m = c.getMethod(
+                "addBlockDelegate", Block.class, int.class, OrePingDelegate.class
+            );
+            m.invoke(null, b, meta, delegate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

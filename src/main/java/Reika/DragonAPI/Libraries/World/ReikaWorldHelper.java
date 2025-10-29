@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.World;
 
 import java.io.File;
@@ -1894,8 +1885,9 @@ public final class ReikaWorldHelper extends DragonAPICore {
         base = 1.0F - base;
         if (weather) {
             base = (float) (base * (1.0D - world.getRainStrength(ptick) * 5.0F / 16.0D));
-            base = (float
-            ) (base * (1.0D - world.getWeightedThunderStrength(ptick) * 5.0F / 16.0D));
+            base = (float) (base
+                            * (1.0D
+                               - world.getWeightedThunderStrength(ptick) * 5.0F / 16.0D));
         }
         return base;
     }

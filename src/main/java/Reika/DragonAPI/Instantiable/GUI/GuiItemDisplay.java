@@ -134,10 +134,10 @@ public interface GuiItemDisplay extends Comparable<GuiItemDisplay> {
         @Override
         @SideOnly(Side.CLIENT)
         protected ItemStack chooseItem() {
-            int idx = (int
-            ) ((System.currentTimeMillis()
-                / (GuiScreen.isShiftKeyDown() ? cycleSpeed / 4 : cycleSpeed))
-               % items.size());
+            int idx
+                = (int) ((System.currentTimeMillis()
+                          / (GuiScreen.isShiftKeyDown() ? cycleSpeed / 4 : cycleSpeed))
+                         % items.size());
             return items.get(idx);
         }
 

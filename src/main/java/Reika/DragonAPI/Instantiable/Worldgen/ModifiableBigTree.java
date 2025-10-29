@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Instantiable.Worldgen;
 
 import java.util.Random;
@@ -98,8 +89,8 @@ public abstract class ModifiableBigTree extends WorldGenAbstractTree {
             height = heightLimit - 1;
         }
 
-        int i = (int
-        ) ((1.382D + Math.pow(leafDensity * heightLimit / 13.0D, 2.0D)) * branchDensity);
+        int i = (int) ((1.382D + Math.pow(leafDensity * heightLimit / 13.0D, 2.0D))
+                       * branchDensity);
 
         if (i < 1) {
             i = 1;
@@ -242,7 +233,7 @@ public abstract class ModifiableBigTree extends WorldGenAbstractTree {
 
     /** Gets the rough size of a layer of the tree. */
     protected float layerSize(int layer) {
-        if (layer < (heightLimit) *0.3D) {
+        if (layer < (heightLimit) * 0.3D) {
             return -1.618F;
         } else {
             float f = heightLimit / 2.0F;

@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries.World;
 
 import java.util.ArrayList;
@@ -339,9 +330,8 @@ public class ReikaBiomeHelper extends DragonAPICore {
      * Converts the given coordinates to an RGB representation of those coordinates'
      * biome's color, for the given material type. Args: World, x, z, material (String)
      */
-    public static int[] biomeToRGB(
-        IBlockAccess world, int x, int y, int z, Material material
-    ) {
+    public static int[]
+    biomeToRGB(IBlockAccess world, int x, int y, int z, Material material) {
         int color = biomeToHex(world, x, y, z, material);
         return ReikaColorAPI.HexToRGB(color);
     }

@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI;
 
 import java.io.File;
@@ -943,7 +934,9 @@ public class DragonAPIInit extends DragonAPIMod {
         this.registerHandler(ModList.CHISEL, ChiselBlockHandler.class, "Handler");
         this.registerHandler(ModList.GREGTECH, GregOreHandler.class, "Ore Handler");
         this.registerHandler(ModList.NATURA, NaturaBlockHandler.class, "Block Handler");
-        this.registerHandler(ModList.HEXCRAFT, HexBlockHandlerSimple.class, "Block Handler");
+        this.registerHandler(
+            ModList.HEXCRAFT, HexBlockHandlerSimple.class, "Block Handler"
+        );
 
         ReikaJavaLibrary.initClass(ModOreList.class, true);
         ReikaJavaLibrary.initClass(ModWoodList.class, true);

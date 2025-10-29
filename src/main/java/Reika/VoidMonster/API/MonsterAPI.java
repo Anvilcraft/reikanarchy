@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.VoidMonster.API;
 
 import java.lang.reflect.Method;
@@ -19,79 +10,82 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class MonsterAPI {
+    private static Class modClass;
+    private static Class monster;
+    private static Class drops;
 
-	private static Class modClass;
-	private static Class monster;
-	private static Class drops;
+    private static Method add;
+    private static Method getList;
 
-	private static Method add;
-	private static Method getList;
+    static {
+        try {
+            modClass = Class.forName("Reika.VoidMonster.VoidMonster");
+            monster = Class.forName("Reika.VoidMonster.Entity.EntityVoidMonster");
+            drops = Class.forName("Reika.VoidMonster.Auxiliary.VoidMonsterDrops");
 
-	static {
-		try {
-			modClass = Class.forName("Reika.VoidMonster.VoidMonster");
-			monster = Class.forName("Reika.VoidMonster.Entity.EntityVoidMonster");
-			drops = Class.forName("Reika.VoidMonster.Auxiliary.VoidMonsterDrops");
+            getList = modClass.getMethod("getCurrentMonsterList", World.class);
+            add = drops.getMethod(
+                "addDrop", ItemStack.class, int.class, int.class, double.class
+            );
+        } catch (Exception e) {
+            throw new RuntimeException(
+                "Could not access own internal classes! Is there an API version mismatch?",
+                e
+            );
+        }
+    }
 
-			getList = modClass.getMethod("getCurrentMonsterList", World.class);
-			add = drops.getMethod("addDrop", ItemStack.class, int.class, int.class, double.class);
-		}
-		catch (Exception e) {
-			throw new RuntimeException("Could not access own internal classes! Is there an API version mismatch?", e);
-		}
-	}
+    public static void addDrop(ItemStack is, int minDrops, int maxDrops) {
+        addDrop(is, minDrops, maxDrops, 0);
+    }
 
-	public static void addDrop(ItemStack is, int minDrops, int maxDrops) {
-		addDrop(is, minDrops, maxDrops, 0);
-	}
+    public static void
+    addDrop(ItemStack is, int minDrops, int maxDrops, double requiredDifficulty) {
+        try {
+            add.invoke(null, is, minDrops, maxDrops, requiredDifficulty);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static void addDrop(ItemStack is, int minDrops, int maxDrops, double requiredDifficulty) {
-		try {
-			add.invoke(null, is, minDrops, maxDrops, requiredDifficulty);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    public static void addDrop(Item item, int minDrops, int maxDrops) {
+        addDrop(new ItemStack(item), minDrops, maxDrops);
+    }
 
-	public static void addDrop(Item item, int minDrops, int maxDrops) {
-		addDrop(new ItemStack(item), minDrops, maxDrops);
-	}
+    public static void addDrop(Block b, int minDrops, int maxDrops) {
+        addDrop(new ItemStack(b), minDrops, maxDrops);
+    }
 
-	public static void addDrop(Block b, int minDrops, int maxDrops) {
-		addDrop(new ItemStack(b), minDrops, maxDrops);
-	}
+    public static void addDrop(ItemStack is) {
+        addDrop(is, 1, 1);
+    }
 
-	public static void addDrop(ItemStack is) {
-		addDrop(is, 1, 1);
-	}
+    public static void addDrop(Item item) {
+        addDrop(new ItemStack(item), 1, 1);
+    }
 
-	public static void addDrop(Item item) {
-		addDrop(new ItemStack(item), 1, 1);
-	}
+    public static void addDrop(Block b) {
+        addDrop(new ItemStack(b), 1, 1);
+    }
 
-	public static void addDrop(Block b) {
-		addDrop(new ItemStack(b), 1, 1);
-	}
-
-	public static EntityLiving getNearestMonster(World world, double x, double y, double z) {
-		try {
-			Collection<EntityLiving> c = (Collection<EntityLiving>)getList.invoke(null, world);
-			double dist = Double.POSITIVE_INFINITY;
-			EntityLiving ret = null;
-			for (EntityLiving e : c) {
-				double d = e.getDistanceSq(x, y, z);
-				if (ret == null || d < dist) {
-					dist = d;
-					ret = e;
-				}
-			}
-			return ret;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
+    public static EntityLiving
+    getNearestMonster(World world, double x, double y, double z) {
+        try {
+            Collection<EntityLiving> c
+                = (Collection<EntityLiving>) getList.invoke(null, world);
+            double dist = Double.POSITIVE_INFINITY;
+            EntityLiving ret = null;
+            for (EntityLiving e : c) {
+                double d = e.getDistanceSq(x, y, z);
+                if (ret == null || d < dist) {
+                    dist = d;
+                    ret = e;
+                }
+            }
+            return ret;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

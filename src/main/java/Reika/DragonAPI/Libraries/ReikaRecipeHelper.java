@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Libraries;
 
 import java.lang.reflect.Field;
@@ -2393,9 +2384,8 @@ public class ReikaRecipeHelper extends DragonAPICore {
         return ret;
     }
 
-    public static Object[] createRecipeArgsFromShapeAndMats(
-        Object[] mats, String... shape
-    ) {
+    public static Object[]
+    createRecipeArgsFromShapeAndMats(Object[] mats, String... shape) {
         ArrayList<Object> li = ReikaJavaLibrary.makeListFrom(shape);
         for (Object o : mats) {
             li.add(o);

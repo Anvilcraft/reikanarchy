@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Instantiable.Recipe;
 
 import java.util.ArrayList;
@@ -137,9 +128,9 @@ public class ItemMatch {
             DragonAPICore.logError("Could not provide cycled item for " + this + "!");
             return new ItemStack(Blocks.fire);
         }
-        ItemStack ret = displayList.get((int
-        ) ((System.currentTimeMillis() / 2000 + Math.abs(this.hashCode()))
-           % displayList.size()));
+        ItemStack ret = displayList.get((int) ((System.currentTimeMillis() / 2000
+                                                + Math.abs(this.hashCode()))
+                                               % displayList.size()));
         if (ret.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
             ArrayList<ItemStack> li = new ArrayList();
             ret.getItem().getSubItems(ret.getItem(), ret.getItem().getCreativeTab(), li);

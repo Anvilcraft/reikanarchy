@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI.Extras;
 
 import java.io.FileNotFoundException;
@@ -134,30 +125,7 @@ public class ModVersion implements Comparable<ModVersion> {
      * FML @Mod!
      */
     public static ModVersion readFromJar(ZipFile jar, String innerName) {
-        if (DragonAPICore.isReikasComputer()
-            && ReikaObfuscationHelper.isDeObfEnvironment())
-            return source;
-        Properties p = new Properties();
-        String path = ReikaStringParser.stripSpaces(
-            "version_" + ReikaStringParser.stripSpaces(innerName + ".properties")
-        );
-        try {
-            InputStream stream
-                = ModVersion.class.getClassLoader().getResourceAsStream(path);
-            if (stream == null) {
-                return new ErroredVersion("Null properties file");
-            }
-            p.load(stream);
-            String mj = p.getProperty("Major");
-            String mn = p.getProperty("Minor");
-            if (mj == null || mn == null || mj.equals("null") || mn.equals("null")
-                || mj.isEmpty() || mn.isEmpty())
-                return new ErroredVersion("Properties missing");
-            return getFromString(mj + mn);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ErroredVersion(e);
-        }
+        return source;
     }
 
     public static ModVersion readFromFile(DragonAPIMod mod) {

@@ -1,12 +1,3 @@
-/*******************************************************************************
- * @author Reika Kalseki
- *
- * Copyright 2017
- *
- * All rights reserved.
- * Distribution of the software in any form is only allowed with
- * explicit, prior permission from the owner.
- ******************************************************************************/
 package Reika.DragonAPI;
 
 import java.io.File;
@@ -295,8 +286,8 @@ public class DragonAPICore {
 
     public static int getSystemTimeAsInt() {
         long t = System.currentTimeMillis();
-        return (int
-        ) ((t % (Integer.MAX_VALUE + 1L) + Integer.MAX_VALUE) % (Integer.MAX_VALUE + 1));
+        return (int) ((t % (Integer.MAX_VALUE + 1L) + Integer.MAX_VALUE)
+                      % (Integer.MAX_VALUE + 1));
     }
 
     public static void openURL(String url) throws Exception {

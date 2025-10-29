@@ -4,80 +4,77 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import Reika.DragonAPI.Libraries.Java.ReikaJavaLibrary;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 
-import Reika.DragonAPI.Libraries.Java.ReikaJavaLibrary;
-
-
 public class LootViewer {
+    private final ArrayList<LootItem> data = new ArrayList();
+    public final String location;
 
-	private final ArrayList<LootItem> data = new ArrayList();
-	public final String location;
+    public LootViewer(String s, WeightedRandomChestContent[] li) {
+        this(s, ReikaJavaLibrary.makeListFromArray(li));
+    }
 
-	public LootViewer(String s, WeightedRandomChestContent[] li) {
-		this(s, ReikaJavaLibrary.makeListFromArray(li));
-	}
+    public LootViewer(String s, ArrayList<WeightedRandomChestContent> li) {
+        for (WeightedRandomChestContent wr : li) {
+            data.add(new LootItem(wr, this.calculateChance(wr, li)));
+        }
+        location = s;
+    }
 
-	public LootViewer(String s, ArrayList<WeightedRandomChestContent> li) {
-		for (WeightedRandomChestContent wr : li) {
-			data.add(new LootItem(wr, this.calculateChance(wr, li)));
-		}
-		location = s;
-	}
+    private float calculateChance(
+        WeightedRandomChestContent wr, ArrayList<WeightedRandomChestContent> li
+    ) {
+        float sum = 0;
+        for (WeightedRandomChestContent wc : li) {
+            sum += wc.itemWeight;
+        }
+        return wr.itemWeight / sum * 100;
+    }
 
-	private float calculateChance(WeightedRandomChestContent wr, ArrayList<WeightedRandomChestContent> li) {
-		float sum = 0;
-		for (WeightedRandomChestContent wc : li) {
-			sum += wc.itemWeight;
-		}
-		return wr.itemWeight/sum*100;
-	}
+    public Collection<LootItem> getLoot() {
+        return Collections.unmodifiableCollection(data);
+    }
 
-	public Collection<LootItem> getLoot() {
-		return Collections.unmodifiableCollection(data);
-	}
+    public static class LootItem {
+        private final WeightedRandomChestContent item;
 
-	public static class LootItem {
+        /** Taking all the other items in the table into account. 0-100. */
+        public final float netChance;
 
-		private final WeightedRandomChestContent item;
+        private LootItem(WeightedRandomChestContent wr, float f) {
+            item = wr;
+            netChance = f;
+        }
 
-		/** Taking all the other items in the table into account. 0-100. */
-		public final float netChance;
+        public ItemStack getItem() {
+            try {
+                return item.theItemId.copy();
+            } catch (Exception e) {
+                try {
+                    return new ItemStack(
+                        item.theItemId.getItem(), 1, item.theItemId.getItemDamage()
+                    );
+                } catch (Exception e2) {
+                    return new ItemStack(Blocks.grass);
+                }
+            }
+        }
 
-		private LootItem(WeightedRandomChestContent wr, float f) {
-			item = wr;
-			netChance = f;
-		}
+        public int[] getStackSizeRange() {
+            if (item.theMinimumChanceToGenerateItem
+                == item.theMaximumChanceToGenerateItem) {
+                return new int[] { item.theMinimumChanceToGenerateItem };
+            } else {
+                return new int[] { item.theMinimumChanceToGenerateItem,
+                                   item.theMaximumChanceToGenerateItem };
+            }
+        }
 
-		public ItemStack getItem() {
-			try {
-				return item.theItemId.copy();
-			}
-			catch (Exception e) {
-				try {
-					return new ItemStack(item.theItemId.getItem(), 1, item.theItemId.getItemDamage());
-				}
-				catch (Exception e2) {
-					return new ItemStack(Blocks.grass);
-				}
-			}
-		}
-
-		public int[] getStackSizeRange() {
-			if (item.theMinimumChanceToGenerateItem == item.theMaximumChanceToGenerateItem) {
-				return new int[]{item.theMinimumChanceToGenerateItem};
-			}
-			else {
-				return new int[]{item.theMinimumChanceToGenerateItem, item.theMaximumChanceToGenerateItem};
-			}
-		}
-
-		public int getWeight() {
-			return item.itemWeight;
-		}
-
-	}
-
+        public int getWeight() {
+            return item.itemWeight;
+        }
+    }
 }
