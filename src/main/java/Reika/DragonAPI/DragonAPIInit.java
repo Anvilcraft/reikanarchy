@@ -1034,7 +1034,7 @@ public class DragonAPIInit extends DragonAPIMod {
 
     @Override
     public String getDisplayName() {
-        return "DragonAPI";
+        return "DragonAPI (Reikanarchy)";
     }
 
     @Override
