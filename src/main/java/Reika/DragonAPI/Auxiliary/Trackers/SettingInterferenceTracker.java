@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import Reika.DragonAPI.Auxiliary.PopupWriter;
 import Reika.DragonAPI.DragonAPICore;
@@ -42,7 +43,7 @@ public class SettingInterferenceTracker implements ProfileEventWatcher {
         = new SettingInterferenceTracker();
 
     public static final SettingInterference muteInterference = new SettingInterference() {
-        private final EnumSet<SoundCategory> importantSounds = EnumSet.of(
+        private final Set<SoundCategory> importantSounds = EnumSet.<SoundCategory>of(
             SoundCategory.MASTER,
             SoundCategory.AMBIENT,
             SoundCategory.BLOCKS,
