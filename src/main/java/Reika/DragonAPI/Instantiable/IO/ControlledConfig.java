@@ -126,7 +126,7 @@ public class ControlledConfig {
         configMod = mod;
         optionList = option;
         IDList = id;
-        String n = ReikaStringParser.stripSpaces(mod.getDisplayName());
+        String n = ReikaStringParser.stripSpaces(configMod.getModID());
         if (configs.containsKey(n))
             throw new IllegalArgumentException("Only one config permitted per mod!");
         configs.put(n, this);
@@ -271,7 +271,7 @@ public class ControlledConfig {
     }
 
     public void loadSubfolderedConfigFile(FMLPreInitializationEvent event) {
-        String name = ReikaStringParser.stripSpaces(configMod.getDisplayName());
+        String name = ReikaStringParser.stripSpaces(configMod.getModID());
         String author = ReikaStringParser.stripSpaces(configMod.getModAuthorName());
         String file
             = event.getModConfigurationDirectory() + "/" + author + "/" + name + ".cfg";

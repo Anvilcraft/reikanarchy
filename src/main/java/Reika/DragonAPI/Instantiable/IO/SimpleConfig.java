@@ -36,7 +36,7 @@ public final class SimpleConfig {
     }
 
     public void loadSubfolderedConfigFile(FMLPreInitializationEvent event) {
-        String name = ReikaStringParser.stripSpaces(configMod.getModContainer().getModId());
+        String name = ReikaStringParser.stripSpaces(configMod.getModID());
         String author = ReikaStringParser.stripSpaces(configMod.getModAuthorName());
         String file
             = event.getModConfigurationDirectory() + "/" + author + "/" + name + ".cfg";

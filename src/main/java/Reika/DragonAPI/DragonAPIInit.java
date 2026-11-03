@@ -1037,6 +1037,10 @@ public class DragonAPIInit extends DragonAPIMod {
         return "DragonAPI (Reikanarchy)";
     }
 
+    public String getModID() {
+        return "DragonAPI";
+    }
+
     @Override
     public String getModAuthorName() {
         return "Reika";

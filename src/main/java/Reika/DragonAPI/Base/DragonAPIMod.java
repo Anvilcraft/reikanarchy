@@ -283,6 +283,16 @@ public abstract class DragonAPIMod {
 
     public abstract File getConfigFolder();
 
+    public String getModID() {
+        ModContainer container = this.getModContainer();
+        if (container != null) {
+            return container.getModId();
+        } else {
+            return this.getDisplayName();
+        }
+
+    }
+
     public final URL getWikiLink() {
         try {
             return new URL(this.getWiki());
