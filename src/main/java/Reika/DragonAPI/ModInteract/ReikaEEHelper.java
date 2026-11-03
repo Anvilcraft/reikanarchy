@@ -68,7 +68,7 @@ public class ReikaEEHelper {
     }
 
     public static boolean isLoaded() {
-        return ModList.PROJECTE.isLoaded();
+        return ModList.PROJECTE.isLoaded() && false; // ALEC
     }
 
     public static void registerCustomEMC(ItemStack is, int emc) {
