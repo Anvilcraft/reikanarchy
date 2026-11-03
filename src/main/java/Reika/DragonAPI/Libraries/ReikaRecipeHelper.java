@@ -453,6 +453,10 @@ public class ReikaRecipeHelper extends DragonAPICore {
     private static List<ItemStack> getRecipeItemStack(ItemStack is, boolean client) {
         if (is == null)
             return null;
+        if (is.getItem() == null) {
+            DragonAPICore.logError("A recipe has a broken Item. Replacing with Commandblock");
+            is.func_150996_a(Item.getItemFromBlock(Blocks.command_block));
+        }
         if (is.getItemDamage() == OreDictionary.WILDCARD_VALUE && client) {
             return ReikaItemHelper.getAllMetadataPermutations(is.getItem());
         } else {
