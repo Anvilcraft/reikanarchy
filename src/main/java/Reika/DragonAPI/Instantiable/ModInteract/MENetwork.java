@@ -71,7 +71,7 @@ public class MENetwork {
             TileEntity te = world.getTileEntity(c.xCoord, c.yCoord, c.zCoord);
             if (te instanceof ICellProvider) {
                 ICellProvider icp = (ICellProvider) te;
-                List<IMEInventoryHandler> li = icp.getCellArray(StorageChannel.ITEMS);
+                List<IMEInventoryHandler> li = icp.getCellArray(StorageChannel.ITEMS, 0);
                 for (IMEInventoryHandler ime : li) {
                     itemCache.add(ime);
                 }
@@ -156,7 +156,7 @@ public class MENetwork {
 
     private void populate(IGrid ig) {
         IStorageGrid isg = ig.getCache(IStorageGrid.class);
-        IMEMonitor<IAEItemStack> mon = isg.getItemInventory();
+        IMEMonitor<IAEItemStack> mon = isg.getInventory(StorageChannel.ITEMS, isg.getPreferredPoolId());
         IItemList contained = mon.getStorageList();
     }
 
@@ -301,7 +301,7 @@ public class MENetwork {
         }
 
         @Override
-        public StorageChannel getChannel() {
+        public StorageChannel getStorageChannel() {
             return StorageChannel.ITEMS;
         }
 

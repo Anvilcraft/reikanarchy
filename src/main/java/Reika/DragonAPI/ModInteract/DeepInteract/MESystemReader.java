@@ -45,6 +45,7 @@ import appeng.api.networking.storage.IStorageGrid;
 import appeng.api.storage.ICellProvider;
 import appeng.api.storage.IMEMonitor;
 import appeng.api.storage.IMEMonitorHandlerReceiver;
+import appeng.api.storage.StorageChannel;
 import appeng.api.storage.data.IAEItemStack;
 import appeng.api.util.AECableType;
 import appeng.api.util.IReadOnlyCollection;
@@ -149,7 +150,7 @@ public class MESystemReader implements IMEMonitorHandlerReceiver<IAEItemStack> {
         if (node == null || node.getGrid() == null)
             return null;
         return ((IStorageGrid) node.getGrid().getCache(IStorageGrid.class))
-            .getItemInventory();
+            .getInventory(StorageChannel.ITEMS);
     }
 
     private ICraftingGrid getCraftingGrid() {

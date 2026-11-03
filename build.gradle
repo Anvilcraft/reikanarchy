@@ -47,8 +47,18 @@ repositories {
         metadataSources { artifact() }
     }
     maven {
-        name "central"
-        url "https://maven.thorfusion.com/artifactory/central/"
+        name = 'CodeChicken Maven'
+        url = uri('https://maven.covers1624.net/')
+        content { includeGroup 'codechicken' }
+    }
+    maven {
+        name = 'CIL Maven'
+        url = uri('https://maven.cil.li/')
+        content { includeGroup 'mcp.mobius.waila' }
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
     }
 }
 
@@ -67,7 +77,7 @@ dependencies {
 
     // Direct deps (reika, WTF)
     compileOnly "mods:MineFactoryReloaded:[1.7.10]2.8.0-104:dev"
-    embedded "appeng:appliedenergistics2:rv3-beta-21:api"
+    embedded "appeng:appliedenergistics2:rv3-beta-26:api"
     compileOnly "buildcraft:buildcraft:7.1.25:dev"
     compileOnly "chisel:Chisel:2.9.5.11:deobf"
     compileOnly "codechicken:CodeChickenCore:1.7.10-1.0.7.48:dev"
