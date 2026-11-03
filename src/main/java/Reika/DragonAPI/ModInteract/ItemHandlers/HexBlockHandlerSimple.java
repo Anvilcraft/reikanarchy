@@ -1,54 +1,20 @@
 package Reika.DragonAPI.ModInteract.ItemHandlers;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 
 import Reika.DragonAPI.Base.ModHandlerBase;
 import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.Libraries.Java.ReikaStringParser;
 import Reika.DragonAPI.ModInteract.ItemHandlers.HexcraftHandler.BasicHexColor;
 import Reika.DragonAPI.ModInteract.ItemHandlers.HexcraftHandler.HexHandler;
+import Reika.DragonAPI.ModInteract.ItemHandlers.HexBlockHandler.BasicHexColors;
 import Reika.DragonAPI.ModList;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class HexBlockHandlerSimple extends ModHandlerBase implements HexHandler {
     private static final HexBlockHandlerSimple instance = new HexBlockHandlerSimple();
-
-    public static enum BasicHexColors implements BasicHexColor {
-        RED,
-        GREEN,
-        BLUE,
-        WHITE,
-        BLACK,
-        ;
-
-        private Item crystal;
-        private Block block;
-        private Block netherBlock;
-
-        public static final BasicHexColors[] list = values();
-
-        private static final HashMap<Item, BasicHexColors> lookup = new HashMap();
-
-        public Item getCrystal() {
-            return crystal;
-        }
-
-        public boolean isPrimary(boolean nether) {
-            return nether ? this == WHITE || this == BLACK : !this.isPrimary(true);
-        }
-
-        public Block getMonolith(boolean nether) {
-            return nether ? netherBlock : block;
-        }
-
-        public static BasicHexColors getColorForItem(ItemStack is) {
-            return lookup.get(is.getItem());
-        }
-    }
 
     private HexBlockHandlerSimple() {
         super();
