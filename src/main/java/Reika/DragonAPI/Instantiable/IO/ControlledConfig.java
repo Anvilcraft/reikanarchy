@@ -183,7 +183,7 @@ public class ControlledConfig {
 
     private String getLabel(ConfigList cfg) {
         String s = cfg.getLabel();
-        if (cfg instanceof UserSpecificConfig
+        if (false && cfg instanceof UserSpecificConfig
             && ((UserSpecificConfig) cfg).isUserSpecific()) {
             s = "[" + Character.toUpperCase(s.charAt(0)) + this.getUserHash(s) + "]U "
                 + s; //First char prefix is to keep original sorting
